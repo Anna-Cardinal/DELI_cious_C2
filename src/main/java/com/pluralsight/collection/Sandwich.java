@@ -9,20 +9,28 @@ public class Sandwich implements Order{
     String meat;
     String cheese;
     String regularTopping;
+    String sauce;
+    String side;
     boolean extraTopping;
     double _price = 0;
+    double tPrice = 0;
 
+    String[] regularToppings = new String[]{"lettuce", "peppers", "onions", "tomatoes", "jalapenos", "cucumbers", "pickles", "guacamole", "mushrooms"};
     String[] breads = new String[]{"White", "Wheat", "Rye", "Wrap", "Pumpernickel"};
     String[] meatTopping = new String[]{"Steak", "Ham", "Salami", "Roast Beef", "Chicken", "Bacon"};
     String[] cheeseTopping = new String[]{"American", "Provolone", "Cheddar", "Swiss"};
+    String[] sauces = new String[]{"mayo", "mustard", "ketchup", "ranch", "thousand islands", "vinaigrette"};
+    String[] sides = new  String[]{"Au Jus", "Sauce", "Potato Salad"};
 
-    public Sandwich(int sandwichSize, String breadType, String meat, String cheese, String regularTopping, boolean extraTopping) {
+    public Sandwich(int sandwichSize, String breadType, String meat, String cheese, String regularTopping, boolean extraTopping, String sauce, String side) {
         this.sandwichSize = sandwichSize;
         this.breadType = breadType;
         this.meat = meat;
         this.cheese = cheese;
         this.regularTopping = regularTopping;
         this.extraTopping = extraTopping;
+        this.sauce = sauce;
+        this.side = side;
     }
 
     public int getSandwichSize() {
@@ -73,6 +81,22 @@ public class Sandwich implements Order{
         this.extraTopping = extraTopping;
     }
 
+    public String getSauce() {
+        return sauce;
+    }
+
+    public void setSauce(String sauce) {
+        this.sauce = sauce;
+    }
+
+    public String getSide() {
+        return side;
+    }
+
+    public void setSide(String side) {
+        this.side = side;
+    }
+
     public void size(int sandwichSize){
         System.out.println("What size sandwich would you like?");
         System.out.println("4 inch, 8 inch, 12 inch");
@@ -116,6 +140,24 @@ public class Sandwich implements Order{
         } else if (sandwichSize == 12) {
             double tPrice = _price + 2.25;
         }
+    }
+
+    public void regularToppings(String regularTopping){
+        System.out.println("What toppings would you like?");
+        System.out.println(Arrays.toString(regularToppings));
+        regularTopping = scanner.nextLine();
+    }
+
+    public void sauces(String sauce){
+        System.out.println("What sauce would you like?");
+        System.out.println(Arrays.toString(sauces));
+        sauce = scanner.nextLine();
+    }
+
+    public void sides(String side){
+        System.out.println("What sides would you like?");
+        System.out.println(Arrays.toString(sides));
+        side = scanner.nextLine();
     }
 
 

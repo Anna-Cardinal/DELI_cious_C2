@@ -41,15 +41,19 @@ public class Drink{
         drinkSize = scanner.nextLine();
 
 
+
+
+
+    }
+
+    public static void drinkPrice(){
         if (drinkSize.equals("Small")){
-            drinkPrice = drinkPrice + 2.00;
+            drinkPrice = 2.00;
         } else if (drinkSize.equals("Medium")) {
-            drinkPrice = drinkPrice + 2.50;
+            drinkPrice = 2.50;
         } else if (drinkSize.equals("Large")) {
-            drinkPrice = drinkPrice + 3.00;
+            drinkPrice = 3.00;
         }
-
-
     }
 
     public static void totalDrink(){

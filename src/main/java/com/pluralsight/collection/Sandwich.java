@@ -8,29 +8,40 @@ public class Sandwich implements Order{
     static String breadType;
     static String meat;
     static String cheese;
-    static String regularTopping;
+    static String[] regularTopping;
     static String sauce;
     static String side;
-    boolean extraTopping;
+    static String extraMeat;
+    static String extraCheese;
     static double _price = 0;
     static double tPrice = 0;
     static double mPrice;
     static double cPrice;
+    static double emPrice;
+    static double ecPrice;
 
     static String[] regularToppings = new String[]{"lettuce", "peppers", "onions", "tomatoes", "jalapenos", "cucumbers", "pickles", "guacamole", "mushrooms"};
+    String lettuce = regularToppings[0];
+    String peppers = regularToppings[1];
+    String onions = regularToppings[2];
+    String tomatoes = regularToppings[3];
+    String jalapenos = regularToppings[4];
+    String cucumbers = regularToppings[5];
+    String pickles = regularToppings[6];
+    String guacamole = regularToppings[7];
+    String mushrooms = regularToppings[8];
     static String[] breads = new String[]{"White", "Wheat", "Rye", "Wrap", "Pumpernickel"};
     static String[] meatTopping = new String[]{"Steak", "Ham", "Salami", "Roast Beef", "Chicken", "Bacon"};
     static String[] cheeseTopping = new String[]{"American", "Provolone", "Cheddar", "Swiss"};
     static String[] sauces = new String[]{"mayo", "mustard", "ketchup", "ranch", "thousand islands", "vinaigrette"};
     static String[] sides = new  String[]{"Au Jus", "Sauce", "Potato Salad"};
 
-    public Sandwich(int sandwichSize, String breadType, String meat, String cheese, String regularTopping, boolean extraTopping, String sauce, String side) {
+    public Sandwich(int sandwichSize, String breadType, String meat, String cheese, String[] regularTopping, String sauce, String side) {
         Sandwich.sandwichSize = sandwichSize;
         Sandwich.breadType = breadType;
         Sandwich.meat = meat;
         Sandwich.cheese = cheese;
         Sandwich.regularTopping = regularTopping;
-        this.extraTopping = extraTopping;
         Sandwich.sauce = sauce;
         Sandwich.side = side;
     }
@@ -67,20 +78,20 @@ public class Sandwich implements Order{
         Sandwich.cheese = cheese;
     }
 
-    public String getRegularTopping() {
+    public String[] getRegularTopping() {
         return regularTopping;
     }
 
     public void setRegularTopping(String regularTopping) {
-        Sandwich.regularTopping = regularTopping;
+        Sandwich.regularTopping = new String[]{regularTopping};
     }
 
-    public boolean getExtraTopping() {
-        return extraTopping;
+    public String getExtraMeat() {
+        return extraMeat;
     }
 
-    public void setExtraTopping(boolean extraTopping) {
-        this.extraTopping = extraTopping;
+    public void setExtraMeat(String extraMeat) {
+        Sandwich.extraMeat = extraMeat;
     }
 
     public String getSauce() {
@@ -99,7 +110,7 @@ public class Sandwich implements Order{
         Sandwich.side = side;
     }
 
-    public static void size(){
+    public static void buildSandwich() {
         System.out.println("What size sandwich would you like?");
         System.out.println("4 inch, 8 inch, 12 inch");
         sandwichSize = scanner.nextInt();
@@ -110,63 +121,88 @@ public class Sandwich implements Order{
         } else if (sandwichSize == 12) {
             _price = 8.50;
         }
-    }
 
-    public static void bread(){
         System.out.println("What bread would you like?");
         System.out.println(Arrays.toString(breads));
         breadType = scanner.nextLine();
         scanner.nextLine();
-    }
 
-    public static void premiumMeat(){
+        System.out.println("Would you like to add meat to your sandwich?");
+        String yesNo = scanner.nextLine();
+        if (yesNo.equalsIgnoreCase("Yes")) {
+            if (sandwichSize == 4) {
+                mPrice = 1.00;
+            } else if (sandwichSize == 8) {
+                mPrice = 2.00;
+            } else if (sandwichSize == 12) {
+                mPrice = 3.00;
+            }
+        }else mPrice = 0;
         System.out.println("What meat would you like?");
         System.out.println(Arrays.toString(meatTopping));
         meat = scanner.nextLine();
-        if (sandwichSize == 4){
-             mPrice = 1.00;
-        } else if (sandwichSize == 8) {
-             mPrice = 2.00;
-        } else if (sandwichSize == 12) {
-             mPrice = 3.00;
-        }
-    }
 
-    public static void premiumCheese(){
+
+        System.out.println("Would you like extra meat?");
+        extraMeat = scanner.nextLine();
+        if (extraMeat.equals("Yes")){
+            if (sandwichSize == 4){
+                emPrice = 0.50;
+            } else if (sandwichSize == 8) {
+                emPrice = 1.00;
+            } else if (sandwichSize == 12) {
+                emPrice = 1.50;
+            }
+        }else emPrice = 0;
+
+        System.out.println("Would you like to add Cheese to your sandwich?");
+        yesNo = scanner.nextLine();
+        if (yesNo.equalsIgnoreCase("yes")) {
+            if (sandwichSize == 4) {
+                cPrice = 0.75;
+            } else if (sandwichSize == 8) {
+                cPrice = 1.50;
+            } else if (sandwichSize == 12) {
+                cPrice = 2.25;
+            }
+        }else cPrice = 0;
         System.out.println("What cheese would you like?");
         System.out.println(Arrays.toString(cheeseTopping));
         cheese = scanner.nextLine();
-        if (sandwichSize == 4){
-             cPrice = 0.75;
-        } else if (sandwichSize == 8) {
-             cPrice = 1.50;
-        } else if (sandwichSize == 12) {
-             cPrice = 2.25;
-        }
-    }
 
-    public static void regularToppings(){
+
+        System.out.println("Would you like extra cheese?");
+        extraCheese = scanner.nextLine();
+        if (extraCheese.equals("Yes")){
+            if (sandwichSize == 4){
+                ecPrice = 0.30;
+            } else if (sandwichSize == 8) {
+                ecPrice = 0.60;
+            } else if (sandwichSize == 12) {
+                ecPrice = 0.90;
+            }
+        }else ecPrice = 0;
+
+
         System.out.println("What toppings would you like?");
         System.out.println(Arrays.toString(regularToppings));
-        regularTopping = scanner.nextLine();
-    }
+        regularTopping = new String[]{scanner.nextLine()};
 
-    public static void sauces(){
+
         System.out.println("What sauce would you like?");
         System.out.println(Arrays.toString(sauces));
         sauce = scanner.nextLine();
-    }
 
-    public static void sides(){
         System.out.println("What sides would you like?");
         System.out.println(Arrays.toString(sides));
         side = scanner.nextLine();
-    }
 
-    public static void price(){
-        tPrice = _price + mPrice + cPrice;
+        tPrice = _price + mPrice + cPrice + emPrice + ecPrice;
         System.out.println("$" + tPrice);
     }
+
+        //Display the calculation that makes up the total price
+
 
 
 

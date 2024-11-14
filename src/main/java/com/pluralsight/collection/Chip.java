@@ -25,8 +25,13 @@ public class Chip {
         System.out.println("What chips would you like?");
         System.out.println(Arrays.toString(chips));
         chip = scanner.nextLine();
+        scanner.nextLine();
 
         System.out.println(chip +"|$" + chipPrice);
+    }
+
+    public static void chipPrice(){
+        chipPrice = 1.50;
     }
 
 
